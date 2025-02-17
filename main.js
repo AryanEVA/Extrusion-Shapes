@@ -12,7 +12,9 @@ import {
   HOLLOW_SUBTRACTION,
   HOLLOW_INTERSECTION,
 } from "three-bvh-csg";
-import { atan, color, depth, or } from "three/tsl";
+
+
+import { Text } from "troika-three-text";
 
 const scene = new THREE.Scene();
 // scene.background = new THREE.Color( '#f2f2f2' );
@@ -333,10 +335,10 @@ const axesHelper = new THREE.AxesHelper(500);
 
 //     const extrudeShape = new THREE.ExtrudeGeometry(Shape, extrudeSettings);
 
-//     const Material = new THREE.MeshPhysicalMaterial({      
+//     const Material = new THREE.MeshPhysicalMaterial({
 //       color: "white",
 //       emissive: "red",
-//       roughness: 0.9,     
+//       roughness: 0.9,
 //       side: THREE.DoubleSide
 //     });
 
@@ -688,137 +690,419 @@ const axesHelper = new THREE.AxesHelper(500);
 
 //#region Creating Window pane by mouse click the points
 
-const raycaster = new THREE.Raycaster();
-const mouse = new THREE.Vector2();
-let clickedPoints = [];
-let lines = [];
-let tempLine = null;
-const planeSize = 1000;
-const shapeWidth = 50;
+// const raycaster = new THREE.Raycaster();
+// const mouse = new THREE.Vector2();
+// let clickedPoints = [];
+// let lines = [];
+// let tempLine = null;
+// const planeSize = 1000;
+// const shapeWidth = 50;
+// let lineSegments = null;
+// let lineHelper = [];
 
-// Create Plane
-const plane = new THREE.Mesh(
-    new THREE.PlaneGeometry(planeSize, planeSize),
-    new THREE.MeshBasicMaterial({ color: "#243143", side: THREE.DoubleSide })
-);
-scene.add(plane);
+// let len;
 
-window.addEventListener("click", onMouseClick);
-window.addEventListener("mousemove", onMouseMove);
+// const plane = new THREE.Mesh(
+//   new THREE.PlaneGeometry(planeSize, planeSize),
+//   new THREE.MeshBasicMaterial({ color: "#243143", side: THREE.DoubleSide })
+// );
+// scene.add(plane);
 
-function onMouseClick(event) {
-    updateMousePosition(event);
+// window.addEventListener("click", onMouseClick);
+// window.addEventListener("mousemove", onMouseMove);
+// window.addEventListener("keydown", function (event) {
+//   if (event.key === "Escape") {
+//     resetDrawing();
+//   }
+// });
 
-    raycaster.setFromCamera(mouse, camera);
-    const intersects = raycaster.intersectObject(plane);
+// function onMouseClick(event) {
+//   updateMousePosition(event);
 
-    if (intersects.length > 0) {
-        const point = intersects[0].point;
-        clickedPoints.push(point);
-        
-        if (clickedPoints.length >= 2) {
-            const prevPoint = clickedPoints[clickedPoints.length - 2];
-            lines.push(new THREE.LineCurve3(prevPoint, point));
-            drawLine(prevPoint, point);
-        }
+//   raycaster.setFromCamera(mouse, camera);
+//   const intersects = raycaster.intersectObject(plane);
 
-        // Close shape when last point is near the first
-        if (clickedPoints.length > 2 && point.distanceTo(clickedPoints[0]) < 5) {
-            createPane(lines, shapeWidth);
-            resetDrawing();
-        }
-    }
-}
-
-function onMouseMove(event) {
-    if (clickedPoints.length === 0) return;
-
-    updateMousePosition(event);
-    raycaster.setFromCamera(mouse, camera);
-    const intersects = raycaster.intersectObject(plane);
-
-    if (intersects.length > 0) {
-        updateTempLine(clickedPoints[clickedPoints.length - 1], intersects[0].point);
-    }
-}
-
-function updateMousePosition(event) {
-    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-}
-
-function drawLine(start, end) {
-    const geometry = new THREE.BufferGeometry().setFromPoints([start, end]);
-    const material = new THREE.LineDashedMaterial({ color: "white" });
-    scene.add(new THREE.Line(geometry, material));
-}
-
-function updateTempLine(start, end) {
-    if (tempLine) scene.remove(tempLine);
+//   if (intersects.length > 0) {
+//     const point = intersects[0].point;  
+//     clickedPoints.push(point);
     
-    tempLine = new THREE.Line(
-        new THREE.BufferGeometry().setFromPoints([start, end]),
-        new THREE.LineDashedMaterial({ color: "gray", dashSize: 5, gapSize: 3, })
-    );
-    scene.add(tempLine);
-}
+//     if (clickedPoints.length >= 2) {
+//       const prevPoint = clickedPoints[clickedPoints.length - 2];
+//       if(point.distanceTo(clickedPoints[0]) >= 5){
+//         lines.push(new THREE.LineCurve3(prevPoint, point));
+//       }
+//       else{
+//         lines.push(new THREE.LineCurve3(prevPoint, clickedPoints[0]));
+        
+//       }
+//       drawLine(prevPoint, point);
+//     }
+//     if (clickedPoints.length > 2 && point.distanceTo(clickedPoints[0]) < 5) {
+//       createPane(lines, shapeWidth, clickedPoints);
+      
+//       resetDrawing();
+//     }
+//   }
+
+// }
+// const mouseText = new Text();
+// mouseText.fontSize = 20;
+// mouseText.color = "yellow";
+// mouseText.position.set(0, 0, 0);
+
+// function onMouseMove(event) {
+//   if (clickedPoints.length === 0) return;
+
+//   updateMousePosition(event);
+//   raycaster.setFromCamera(mouse, camera);
+//   const intersects = raycaster.intersectObject(plane);
+
+//   if (intersects.length > 0) {
+//     updateTempLine(
+//       clickedPoints[clickedPoints.length - 1],
+//       intersects[0].point
+//     );
+//   }
+
+//   updateMousePosition(event);
+//   if (intersects.length > 0) {
+//     const point = intersects[0].point;
+//     mouseText.text = `X: ${Math.floor(point.x)}, Y: ${Math.floor(point.y)}`;
+//     mouseText.position.set(point.x - 50, point.y + 40, point.z);
+//   }
+//   scene.add(mouseText);
+// }
+
+// function updateMousePosition(event) {
+//   mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+//   mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+// }
+
+// function drawLine(start, end) {
+//   const geometry = new THREE.BufferGeometry().setFromPoints([start, end]);
+//   const material = new THREE.LineDashedMaterial({
+//     color: "white",
+//     dashSize: 10,
+//     gapSize: 3,
+//   });
+//   lineSegments = new THREE.Line(geometry, material);
+//   lineSegments.computeLineDistances();
+//   scene.add(lineSegments);
+//   lineHelper.push(lineSegments);
+// }
+
+// function updateTempLine(start, end) {
+//   if (tempLine) scene.remove(tempLine);
+
+//   tempLine = new THREE.Line(
+//     new THREE.BufferGeometry().setFromPoints([start, end]),
+//     new THREE.LineDashedMaterial({ color: "gray", dashSize: 5, gapSize: 5 })
+//   );
+
+//   tempLine.computeLineDistances();
+//   scene.add(tempLine);
+// }
+
+// function getPerpendicularLength(base, angle) {
+//   return base * Math.tan(angle);
+// }
+
+// function isClockwise(lines) {
+//   let sum = 0;
+//   for (let i = 0; i < lines.length; i++) {
+//     const current = lines[i].v1;
+//     const next = lines[(i + 1) % lines.length].v1;
+//     sum += (next.x - current.x) * (next.y + current.y);
+//   }
+//   return sum > 0;
+// }
+// console.log(clickedPoints);
 
 
-function isClockwise(lines){
-  let sum = 0;
-  for(let i = 0;i< lines.length;i++){
-    const current = lines[i].v1;
-    const next = lines[(i + 1) % lines.length].v1;
-    sum += (next.x - current.x) * (next.y + current.y);
-  }
-  return sum > 0;
-}
+// // Extruded shape for the window panes
+// function createPane(lines, shapeWidth, clickedPoints) {
+  
+//   const finalObj = new THREE.Object3D();
+//   const shape = new THREE.Shape();
+//   let extrudeShape;
+//   const angles = [];
+//   const a = clickedPoints[0].distanceTo(clickedPoints[1]);
+//   const b = clickedPoints[1].distanceTo(clickedPoints[clickedPoints.length - 2]);
+//   const c = clickedPoints[clickedPoints.length - 2].distanceTo(clickedPoints[0]);
+   
+//   const cosA = (b ** 2 + c ** 2 - a ** 2) / (2*b*c);
+//   const angleRad = Math.acos(cosA);
+//   angles.push(angleRad);
 
-function createPane(lines, shapeWidth) {
-    const finalObj = new THREE.Object3D();
-    const shape = new THREE.Shape();
+//   for(let i = 0;i<clickedPoints.length - 2;i++){
 
-    // Set shape orientation based on clockwise check
-    if (isClockwise(lines)) {
-        shape.moveTo(0, 0);
-        shape.lineTo(0, -shapeWidth);
-        shape.lineTo(shapeWidth, -shapeWidth);
-        shape.lineTo(shapeWidth, 0);
-    } else {
-        shape.moveTo(0, 0);
-        shape.lineTo(shapeWidth, 0);
-        shape.lineTo(shapeWidth, shapeWidth);
-        shape.lineTo(0, shapeWidth);
-    }
-    shape.closePath();
+//     const a = clickedPoints[i].distanceTo(clickedPoints[i+1]);
+//     const b = clickedPoints[i + 1].distanceTo(clickedPoints[i+2]);
+//     const c = clickedPoints[i + 2].distanceTo(clickedPoints[i % (clickedPoints.length - 2)]);
+     
+//     const cosA = (b ** 2 + c ** 2 - a ** 2) / (2*b*c);
+//     const angleRad = Math.acos(cosA);
+//     angles.push(angleRad);
+    
+//     }
+  
+//   if (isClockwise(lines)) {
+//     shape.moveTo(0, 0);
+//     shape.lineTo(0, -shapeWidth);
+//     shape.lineTo(shapeWidth, -shapeWidth);
+//     shape.lineTo(shapeWidth, 0);
+//   } else {
+//     shape.moveTo(0, 0);
+//     shape.lineTo(shapeWidth, 0);
+//     shape.lineTo(shapeWidth, shapeWidth);
+//     shape.lineTo(0, shapeWidth);
+//   }
+//   shape.closePath();
 
-    // Extrude along drawn path
-    for (const line of lines) {
-        const extrudeSettings = { steps: 100, bevelEnabled: false, extrudePath: line };
-        const extrudeShape = new THREE.ExtrudeGeometry(shape, extrudeSettings);
-        const material = new THREE.MeshPhysicalMaterial({
-            color: "white", emissive: "red", roughness: 0.9, side: THREE.DoubleSide
-        });
 
-        finalObj.add(new THREE.Mesh(extrudeShape, material));
-    }
+//   for (const line of lines) {
+//     const extrudeSettings = {
+//       steps: 1,
+//       bevelEnabled: false,
+//       extrudePath: line,
+//     };
+//     extrudeShape = new THREE.ExtrudeGeometry(shape, extrudeSettings);
+//     const material = new THREE.MeshPhysicalMaterial({
+//       color: "white",
+//       emissive: "red",
+//       roughness: 0.9,
+//       side: THREE.DoubleSide,
+//     });
+//     finalObj.add(new THREE.Mesh(extrudeShape, material));
+    
 
-    finalObj.position.z = shapeWidth + 2;
-    scene.add(finalObj);
-}
+//     const pos = extrudeShape.getAttribute("position");
+//     for (let i = 0; i < pos.count; i++) {
+//       let x = pos.getX(i);
+//       let y = pos.getY(i);
+//       let z = pos.getZ(i);
+//       console.log(x,y,z);
+      
+//       //Bottom Left corner
+//       if (y >= clickedPoints[0].y - shapeWidth && y <= clickedPoints[0].y + shapeWidth && x >= clickedPoints[0].x - shapeWidth && x <= clickedPoints[0].x + shapeWidth) {
+//         const shiftAmountX = (y - clickedPoints[0].y) * Math.tan(angles[0]);
+//         console.log("shiftAmountX: ", shiftAmountX);
+//         pos.setX(i, x + shiftAmountX);
+//         const shiftAmountY = (x - clickedPoints[0].x) * Math.tan(angles[0]);
+//         pos.setY(i, y + shiftAmountY);
+//         console.log("shiftAmountY: ", shiftAmountY);
+//       }
 
-function resetDrawing() {
-    if (tempLine) {
-        scene.remove(tempLine);
-        tempLine = null;
-    }
-    clickedPoints = [];
-    lines = [];
-}
+//       //Bottom Right Corner
+//       if(x >= clickedPoints[1].x - shapeWidth && x <= clickedPoints[1].x + shapeWidth && y >= clickedPoints[1].y - shapeWidth && y <= clickedPoints[1].y + shapeWidth){
+//         const shiftAmountX = (y - clickedPoints[1].y) * Math.tan(angles[1]);
+//         pos.setX(i, x - shiftAmountX);
+//         const shiftAmountY = (clickedPoints[1].x - x) * Math.tan(angles[1]);
+//         pos.setY(i, y + shiftAmountY)
+//       }
 
+
+//       // Top-right corner transformation
+//     if (x >= clickedPoints[2].x - shapeWidth && x <= clickedPoints[2].x + shapeWidth && y >= clickedPoints[2].y - shapeWidth && y <= clickedPoints[2].y + shapeWidth) {
+//       const shiftAmountY = (clickedPoints[2].x - x) * Math.tan(angles[2]);
+//       pos.setY(i, y - shiftAmountY);
+//       const shiftAmountX = (clickedPoints[2].y - y) * Math.tan(angles[2]);
+//       pos.setX(i, x - shiftAmountX);
+//     }
+
+//       // Top-left corner transformation
+//     if (y >= clickedPoints[3].y - shapeWidth && y <= clickedPoints[3].y + shapeWidth && x >= clickedPoints[3].x - shapeWidth && x <= clickedPoints[3].x + shapeWidth) {
+//       const shiftAmountX = (clickedPoints[3].y - y) * Math.tan(angles[3]);
+//       pos.setX(i, x + shiftAmountX);
+//       const shiftAmountY = (x -clickedPoints[3].x) * Math.tan(angles[3]);
+//       pos.setY(i, y - shiftAmountY);
+//     }
+
+
+//   }
+  
+//     const edges = new THREE.EdgesGeometry(extrudeShape);
+//   const edgesMaterial = new THREE.LineBasicMaterial({color: "white"});
+//   const edgesOfMesh = new THREE.LineSegments(edges, edgesMaterial);
+//   finalObj.add(edgesOfMesh);
+//   }
+
+  
+//   finalObj.position.z = shapeWidth + 2;
+//   scene.add(finalObj);
+// }
+
+
+
+// function resetDrawing() {
+//   if (tempLine) {
+//     scene.remove(tempLine);
+//     tempLine = null;
+//   }
+//   clickedPoints = [];
+//   lines = [];
+//   if (lineSegments) {
+//     lineHelper.forEach((element) => {
+//       scene.remove(element);
+//     });
+//     lineSegments = null;
+//   }
+//   scene.remove(mouseText);
+// }
 
 
 //#endregion
+
+//#region CutLine concept...
+
+
+const line1Start = new THREE.Vector2(0, 100);
+const line1End = new THREE.Vector2(0, 0);
+const line2Start = new THREE.Vector2(0, 0);
+const line2End = new THREE.Vector2(100, 0);
+
+const pointsArr = [
+  new THREE.Vector3(line1Start.x, line1Start.y, 0),
+  new THREE.Vector3(line1End.x, line1End.y, 0),
+  new THREE.Vector3(line2Start.x, line2Start.y, 0),
+  new THREE.Vector3(line2End.x, line2End.y, 0),
+];
+
+
+
+
+function findAngleBetweenLines(start1, end1, start2, end2) {
+  const dir1 = new THREE.Vector2(end1.x - start1.x, end1.y - start1.y);
+  const dir2 = new THREE.Vector2(end2.x - start2.x, end2.y - start2.y);
+
+  const dotProduct = dir1.dot(dir2);
+
+  const angleRad = Math.acos(dotProduct / (dir1.length() * dir2.length()));
+
+  // Convert to degrees
+  const angleDeg = THREE.MathUtils.radToDeg(angleRad);
+
+  return (180 - angleDeg);
+}
+const angle = findAngleBetweenLines(line1Start, line1End, line2Start, line2End);
+const angleRad = THREE.MathUtils.degToRad(angle);
+const cutLinePointY = (line2End.distanceTo(line2Start)) * Math.tan(angleRad/2);
+
+const cutPoints = [
+  new THREE.Vector3(line1End.x, line1End.y, 0),
+  new THREE.Vector3(line2End.x, line2End.y + cutLinePointY, 0),
+];
+
+
+const geometry = new THREE.BufferGeometry().setFromPoints(pointsArr);
+const material = new THREE.LineBasicMaterial({ color: "red" });
+const line = new THREE.LineSegments(geometry, material);
+const cutLine = new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints(cutPoints),material);
+line.add(cutLine);
+
+scene.add(line);
+console.log("Angle between the two lines:", angle, "degrees");
+
+//#endregion
+
+//#region Concept play area.....
+// const origin = new THREE.Vector2(0, 0);
+// const extrudeLength = 200;
+
+// const base = 30;
+// const angle = 45;
+// const angleRad = THREE.MathUtils.degToRad(angle);
+// const perpendicular = base * Math.tan(angleRad);
+
+
+// const shape = new THREE.Shape();
+// shape.moveTo(origin.x, origin.y);
+// shape.lineTo(origin.x + 30, origin.y);
+// shape.lineTo(origin.x + 30, origin.y + 30);
+// shape.lineTo(origin.x, origin.y + 30);
+// shape.lineTo(origin.x, origin.y);
+
+// const bottomPath = new THREE.LineCurve3(
+//   new THREE.Vector3(origin.x, origin.y, 0),
+//   new THREE.Vector3(origin.x + extrudeLength, origin.y, 0),
+// );
+
+// const rightPath = new THREE.LineCurve3(
+//   new THREE.Vector3(origin.x + extrudeLength, origin.y, 0),
+//   new THREE.Vector3(origin.x + extrudeLength, origin.y + extrudeLength, 0)
+// );
+
+// const topPath = new THREE.LineCurve3(
+//   new THREE.Vector3(origin.x + extrudeLength, origin.y + extrudeLength, 0),
+//   new THREE.Vector3(origin.x, origin.y + extrudeLength, 0),
+// )
+
+// const leftPath = new THREE.LineCurve3(
+//   new THREE.Vector3(origin.x, origin.y + extrudeLength, 0),
+//   new THREE.Vector3(origin.x, origin.y, 0)
+// )
+// const path = [];
+// path.push(bottomPath, rightPath, topPath, leftPath);
+
+// for (const line of path) {
+//   const extrudeSettings = {
+//     steps: 1,
+//     bevelEnabled: false,
+//     extrudePath: line,
+//   };
+
+//   const extrudeShape = new THREE.ExtrudeGeometry(shape, extrudeSettings);
+//   const material = new THREE.MeshBasicMaterial({ color: "red", side: THREE.DoubleSide });
+//   const mesh = new THREE.Mesh(extrudeShape, material);
+//   const pos = extrudeShape.attributes.position;
+
+//   for (let i = 0; i < pos.count; i++) {
+//     let x = pos.getX(i);
+//     let y = pos.getY(i);
+  
+//     // Bottom-left corner transformation
+//     if (y >= origin.y && y <= origin.y + base && x >= origin.x && x <= origin.x + base) {
+//       const shiftAmountX = (y - origin.y) * Math.tan(angleRad);
+//       pos.setX(i, x + shiftAmountX);
+//       const shiftAmountY = (x - origin.x) * Math.tan(angleRad);
+//       pos.setY(i, y + shiftAmountY);
+//     }
+  
+//     // Bottom-right corner transformation
+//     if (x >= origin.x + extrudeLength - base && x <= origin.x + extrudeLength && y >= origin.y && y <= origin.y + base) {
+//       const shiftAmountX = (y - origin.y) * Math.tan(angleRad);
+//       pos.setX(i, x - shiftAmountX);
+//       const shiftAmountY = (origin.x + extrudeLength - x) * Math.tan(angleRad);
+//       pos.setY(i, y + shiftAmountY);
+//     }
+  
+//     // Top-right corner transformation
+//     if (x >= origin.x + extrudeLength - base && x <= origin.x + extrudeLength && y >= origin.y + extrudeLength - base && y <= origin.y + extrudeLength) {
+//       const shiftAmountY = (origin.x + extrudeLength - x) * Math.tan(angleRad);
+//       pos.setY(i, y - shiftAmountY);
+//       const shiftAmountX = (origin.y + extrudeLength - y) * Math.tan(angleRad);
+//       pos.setX(i, x - shiftAmountX);
+//     }
+  
+//     // Top-left corner transformation
+//     if (y >= origin.y + extrudeLength - base && y <= origin.y + extrudeLength && x >= origin.x && x <= origin.x + base) {
+//       const shiftAmountX = (origin.y + extrudeLength - y) * Math.tan(angleRad);
+//       pos.setX(i, x + shiftAmountX);
+//       const shiftAmountY = (x - origin.x) * Math.tan(angleRad);
+//       pos.setY(i, y - shiftAmountY);
+//     }
+//   }
+  
+//   const lineMat = new THREE.LineBasicMaterial({ color: "white" });
+//   const edges = new THREE.LineSegments(new THREE.EdgesGeometry(extrudeShape), lineMat);
+//   mesh.add(edges);
+//   scene.add(mesh);
+
+// }
+
+
+//#endregion
+
 
 //#region  Renderer setup
 const canvas = document.querySelector("canvas");
@@ -856,6 +1140,8 @@ function animate() {
 
   requestAnimationFrame(animate);
   renderer.render(scene, camera);
+
+  // mouseText.sync();
 }
 animate();
 //#endregion
