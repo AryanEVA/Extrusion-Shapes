@@ -27,7 +27,7 @@ export class HelperFunction {
     let magnitude2 = v2.length();
 
     let angleRad = Math.acos(dotProduct / (magnitude1 * magnitude2));
-    let angleDeg = THREE.MathUtils.radToDeg(angleRad);
+    let angleDeg = 180 - THREE.MathUtils.radToDeg(angleRad);
 
     return angleDeg;
   }

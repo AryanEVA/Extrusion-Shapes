@@ -3,7 +3,6 @@ import "./style.css";
 import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import {
- 
   Brush,
   Evaluator,
   ADDITION,
@@ -14,7 +13,6 @@ import {
   HOLLOW_INTERSECTION,
   DIFFERENCE,
 } from "three-bvh-csg";
-
 
 import { Text } from "troika-three-text";
 import { HelperFunction } from "./helperFunctions";
@@ -46,7 +44,7 @@ directionalLight.target = targetObject;
 directionalLight.target.updateMatrixWorld();
 
 // directionalLight.lookAt(100,100,200);
-scene.add( directionalLight );
+scene.add(directionalLight);
 
 const helper = new THREE.DirectionalLightHelper(directionalLight, 100);
 // scene.add( helper );
@@ -201,21 +199,21 @@ const axesHelper = new THREE.AxesHelper(500);
 // // shape.lineTo(origin.x, origin.y);
 
 // //#endregion
-// const innerOffset = (shapeWidth - innerWidth) /2;
-// for(let i = 0;i<=innerHeight;i++){
-//   shape.lineTo(origin.x + innerOffset, origin.y + innerOffset + i);
-// }
-// for(let i = 0;i<=innerWidth;i++){
-//   shape.lineTo(origin.x + innerOffset + i, origin.y + innerOffset + innerHeight);
-// }
-// for(let i = innerOffset + innerHeight;i>= innerOffset;i--){
-//   shape.lineTo(origin.x + innerOffset + innerWidth, origin.y + i);
+// // const innerOffset = (shapeWidth - innerWidth) /2;
+// // for(let i = 0;i<=innerHeight;i++){
+// //   shape.lineTo(origin.x + innerOffset, origin.y + innerOffset + i);
+// // }
+// // for(let i = 0;i<=innerWidth;i++){
+// //   shape.lineTo(origin.x + innerOffset + i, origin.y + innerOffset + innerHeight);
+// // }
+// // for(let i = innerOffset + innerHeight;i>= innerOffset;i--){
+// //   shape.lineTo(origin.x + innerOffset + innerWidth, origin.y + i);
 
-// }
-// for(let i = innerOffset + innerWidth;i>=innerOffset;i--){
-//   shape.lineTo(origin.x + i, origin.y + innerOffset);
+// // }
+// // for(let i = innerOffset + innerWidth;i>=innerOffset;i--){
+// //   shape.lineTo(origin.x + i, origin.y + innerOffset);
 
-// }
+// // }
 
 //   const path = new THREE.CurvePath();
 //   const line = new THREE.LineCurve3(
@@ -237,38 +235,40 @@ const axesHelper = new THREE.AxesHelper(500);
 //   const verticesBack = [];
 //   const pos = extrudeShape.getAttribute('position');
 
+//   const edgesLines = new THREE.LineSegments(new THREE.EdgesGeometry(extrudeShape), new THREE.LineBasicMaterial({color: "white"}));
+
 //   for(let i = 0;i<pos.count;i++){
 //     const x = pos.getX(i);
 //     const y = pos.getY(i);
 //     const z = pos.getZ(i);
-//     // if(x === origin.x){
-//     //   const theta = Math.atan(shapeWidth/innerWidth);
-//     //   pos.setX(i,origin.x + x + origin.y + y * theta)
-//     //   verticesFront.push(new THREE.Vector3(pos.getX(i), pos.getY(i), pos.getZ(i)));
-//     // }
-//     // else if(x === origin.x + extrudeWidth){
-//     //   verticesBack.push(new THREE.Vector3(x, y, z));
-//     // }
-
-//     if (x === origin.x && y > shapeHeight / 2) {
-//       const theta = Math.atan((shapeWidth / 2) / (shapeHeight / 2));
-//       const dx = (y - shapeHeight / 2) * theta;
-//       pos.setX(i, origin.x + dx);
-
+//     if(x === origin.x){
+//       const theta = Math.atan(shapeWidth/innerWidth);
+//       pos.setX(i,origin.x + x + origin.y + y * theta)
 //       verticesFront.push(new THREE.Vector3(pos.getX(i), pos.getY(i), pos.getZ(i)));
-//   }
-
-//   else if (x === origin.x && y <= shapeHeight / 2) {
-//     const theta = Math.atan((shapeWidth / 2) / (shapeHeight / 2));
-//     const dx = (shapeHeight / 2 - y) * theta;
-//     pos.setX(i, origin.x + dx);
-
-//     verticesFront.push(new THREE.Vector3(pos.getX(i), pos.getY(i), pos.getZ(i)));
-// }
-
+//     }
 //     else if(x === origin.x + extrudeWidth){
 //       verticesBack.push(new THREE.Vector3(x, y, z));
 //     }
+
+// //     if (x === origin.x && y > shapeHeight / 2) {
+// //       const theta = Math.atan((shapeWidth / 2) / (shapeHeight / 2));
+// //       const dx = (y - shapeHeight / 2) * theta;
+// //       pos.setX(i, origin.x + dx);
+
+// //       verticesFront.push(new THREE.Vector3(pos.getX(i), pos.getY(i), pos.getZ(i)));
+// //   }
+
+// //   else if (x === origin.x && y <= shapeHeight / 2) {
+// //     const theta = Math.atan((shapeWidth / 2) / (shapeHeight / 2));
+// //     const dx = (shapeHeight / 2 - y) * theta;
+// //     pos.setX(i, origin.x + dx);
+
+// //     verticesFront.push(new THREE.Vector3(pos.getX(i), pos.getY(i), pos.getZ(i)));
+// // }
+
+// //     else if(x === origin.x + extrudeWidth){
+// //       verticesBack.push(new THREE.Vector3(x, y, z));
+// //     }
 
 //     // if(y === origin.y){
 //     //   const theta = Math.atan(shapeWidth/innerWidth);
@@ -287,6 +287,7 @@ const axesHelper = new THREE.AxesHelper(500);
 
 //   const backFaceLines =new THREE.LineSegments(new THREE.EdgesGeometry( new THREE.BufferGeometry().setFromPoints(verticesBack)), edgesMaterial);
 //   const extrudeMesh = new THREE.Mesh(extrudeShape, material);
+//   // extrudeMesh.add(edgesLines)
 //   scene.add(extrudeMesh, frontFaceLines,backFaceLines );
 
 //#endregion
@@ -728,9 +729,9 @@ const axesHelper = new THREE.AxesHelper(500);
 //   const intersects = raycaster.intersectObject(plane);
 
 //   if (intersects.length > 0) {
-//     const point = intersects[0].point;  
+//     const point = intersects[0].point;
 //     clickedPoints.push(point);
-    
+
 //     if (clickedPoints.length >= 2) {
 //       const prevPoint = clickedPoints[clickedPoints.length - 2];
 //       if(point.distanceTo(clickedPoints[0]) >= 5){
@@ -738,13 +739,13 @@ const axesHelper = new THREE.AxesHelper(500);
 //       }
 //       else{
 //         lines.push(new THREE.LineCurve3(prevPoint, clickedPoints[0]));
-        
+
 //       }
 //       drawLine(prevPoint, point);
 //     }
 //     if (clickedPoints.length > 2 && point.distanceTo(clickedPoints[0]) < 5) {
 //       createPane(lines, shapeWidth, clickedPoints);
-      
+
 //       resetDrawing();
 //     }
 //   }
@@ -823,9 +824,8 @@ const axesHelper = new THREE.AxesHelper(500);
 // }
 // console.log("Clicked Points : ",clickedPoints);
 
-
 // function createPane(lines, shapeWidth, clickedPoints) {
-  
+
 //   const finalObj = new THREE.Object3D();
 //   const shape = new THREE.Shape();
 //   let extrudeShape;
@@ -833,7 +833,7 @@ const axesHelper = new THREE.AxesHelper(500);
 //   const a = clickedPoints[0].distanceTo(clickedPoints[1]);
 //   const b = clickedPoints[1].distanceTo(clickedPoints[clickedPoints.length - 2]);
 //   const c = clickedPoints[clickedPoints.length - 2].distanceTo(clickedPoints[0]);
-   
+
 //   const cosA = (b ** 2 + c ** 2 - a ** 2) / (2*b*c);
 //   const angleRad = Math.acos(cosA);
 //   angles.push(angleRad);
@@ -851,7 +851,7 @@ const axesHelper = new THREE.AxesHelper(500);
 //     const a = clickedPoints[i].distanceTo(clickedPoints[i+1]);
 //     const b = clickedPoints[i + 1].distanceTo(clickedPoints[i+2]);
 //     const c = clickedPoints[i + 2].distanceTo(clickedPoints[i % (clickedPoints.length - 2)]);
-     
+
 //     const cosA = (b ** 2 + c ** 2 - a ** 2) / (2*b*c);
 //     const angleRad = Math.acos(cosA);
 //     angles.push(angleRad);
@@ -865,10 +865,9 @@ const axesHelper = new THREE.AxesHelper(500);
 
 //     const cutLine = new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints(cutLinePts), new THREE.LineBasicMaterial({ color: "Yellow"}));
 //     scene.add(cutLine);
-    
+
 //     }
-    
-  
+
 //   if (isClockwise(lines)) {
 //     shape.moveTo(0, 0);
 //     shape.lineTo(0, -shapeWidth);
@@ -881,7 +880,6 @@ const axesHelper = new THREE.AxesHelper(500);
 //     shape.lineTo(0, shapeWidth);
 //   }
 //   shape.closePath();
-
 
 //   for (const line of lines) {
 //     const extrudeSettings = {
@@ -897,7 +895,6 @@ const axesHelper = new THREE.AxesHelper(500);
 //       side: THREE.DoubleSide,
 //     });
 //     finalObj.add(new THREE.Mesh(extrudeShape, material));
-    
 
 //     const pos = extrudeShape.getAttribute("position");
 //     for (let i = 0; i < pos.count; i++) {
@@ -905,7 +902,7 @@ const axesHelper = new THREE.AxesHelper(500);
 //       let y = pos.getY(i);
 //       let z = pos.getZ(i);
 //       console.log(x,y,z);
-      
+
 //       //Bottom Left corner
 //       if (y >= clickedPoints[0].y - shapeWidth && y <= clickedPoints[0].y + shapeWidth && x >= clickedPoints[0].x - shapeWidth && x <= clickedPoints[0].x + shapeWidth) {
 //         const shiftAmountX = (y - clickedPoints[0].y) * Math.tan(angles[0]);
@@ -924,7 +921,6 @@ const axesHelper = new THREE.AxesHelper(500);
 //         pos.setY(i, y + shiftAmountY)
 //       }
 
-
 //       // Top-right corner transformation
 //     if (x >= clickedPoints[2].x - shapeWidth && x <= clickedPoints[2].x + shapeWidth && y >= clickedPoints[2].y - shapeWidth && y <= clickedPoints[2].y + shapeWidth) {
 //       const shiftAmountY = (clickedPoints[2].x - x) * Math.tan(angles[2]);
@@ -941,21 +937,17 @@ const axesHelper = new THREE.AxesHelper(500);
 //       pos.setY(i, y - shiftAmountY);
 //     }
 
-
 //   }
-  
+
 //     const edges = new THREE.EdgesGeometry(extrudeShape);
 //   const edgesMaterial = new THREE.LineBasicMaterial({color: "white"});
 //   const edgesOfMesh = new THREE.LineSegments(edges, edgesMaterial);
 //   finalObj.add(edgesOfMesh);
 //   }
 
-  
 //   finalObj.position.z = shapeWidth + 2;
 //   scene.add(finalObj);
 // }
-
-
 
 // function resetDrawing() {
 //   if (tempLine) {
@@ -973,11 +965,9 @@ const axesHelper = new THREE.AxesHelper(500);
 //   scene.remove(mouseText);
 // }
 
-
 //#endregion
 
 //#region CutLine concept...
-
 
 // const line1Start = new THREE.Vector2(0, 100);
 // const line1End = new THREE.Vector2(0, 0);
@@ -990,9 +980,6 @@ const axesHelper = new THREE.AxesHelper(500);
 //   new THREE.Vector3(line2Start.x, line2Start.y, 0),
 //   new THREE.Vector3(line2End.x, line2End.y, 0),
 // ];
-
-
-
 
 // function findAngleBetweenLines(start1, end1, start2, end2) {
 //   const dir1 = new THREE.Vector2(end1.x - start1.x, end1.y - start1.y);
@@ -1016,7 +1003,6 @@ const axesHelper = new THREE.AxesHelper(500);
 //   new THREE.Vector3(line2End.x, line2End.y + cutLinePointY, 0),
 // ];
 
-
 // const geometry = new THREE.BufferGeometry().setFromPoints(pointsArr);
 // const material = new THREE.LineBasicMaterial({ color: "red" });
 // const line = new THREE.LineSegments(geometry, material);
@@ -1036,7 +1022,6 @@ const axesHelper = new THREE.AxesHelper(500);
 // const angle = 45;
 // const angleRad = THREE.MathUtils.degToRad(angle);
 // const perpendicular = base * Math.tan(angleRad);
-
 
 // const shape = new THREE.Shape();
 // shape.moveTo(origin.x, origin.y);
@@ -1082,7 +1067,7 @@ const axesHelper = new THREE.AxesHelper(500);
 //   for (let i = 0; i < pos.count; i++) {
 //     let x = pos.getX(i);
 //     let y = pos.getY(i);
-  
+
 //     // Bottom-left corner transformation
 //     if (y >= origin.y && y <= origin.y + base && x >= origin.x && x <= origin.x + base) {
 //       const shiftAmountX = (y - origin.y) * Math.tan(angleRad);
@@ -1090,7 +1075,7 @@ const axesHelper = new THREE.AxesHelper(500);
 //       const shiftAmountY = (x - origin.x) * Math.tan(angleRad);
 //       pos.setY(i, y + shiftAmountY);
 //     }
-  
+
 //     // Bottom-right corner transformation
 //     if (x >= origin.x + extrudeLength - base && x <= origin.x + extrudeLength && y >= origin.y && y <= origin.y + base) {
 //       const shiftAmountX = (y - origin.y) * Math.tan(angleRad);
@@ -1098,7 +1083,7 @@ const axesHelper = new THREE.AxesHelper(500);
 //       const shiftAmountY = (origin.x + extrudeLength - x) * Math.tan(angleRad);
 //       pos.setY(i, y + shiftAmountY);
 //     }
-  
+
 //     // Top-right corner transformation
 //     if (x >= origin.x + extrudeLength - base && x <= origin.x + extrudeLength && y >= origin.y + extrudeLength - base && y <= origin.y + extrudeLength) {
 //       const shiftAmountY = (origin.x + extrudeLength - x) * Math.tan(angleRad);
@@ -1106,7 +1091,7 @@ const axesHelper = new THREE.AxesHelper(500);
 //       const shiftAmountX = (origin.y + extrudeLength - y) * Math.tan(angleRad);
 //       pos.setX(i, x - shiftAmountX);
 //     }
-  
+
 //     // Top-left corner transformation
 //     if (y >= origin.y + extrudeLength - base && y <= origin.y + extrudeLength && x >= origin.x && x <= origin.x + base) {
 //       const shiftAmountX = (origin.y + extrudeLength - y) * Math.tan(angleRad);
@@ -1115,7 +1100,7 @@ const axesHelper = new THREE.AxesHelper(500);
 //       pos.setY(i, y - shiftAmountY);
 //     }
 //   }
-  
+
 //   const lineMat = new THREE.LineBasicMaterial({ color: "white" });
 //   const edges = new THREE.LineSegments(new THREE.EdgesGeometry(extrudeShape), lineMat);
 //   mesh.add(edges);
@@ -1123,9 +1108,7 @@ const axesHelper = new THREE.AxesHelper(500);
 
 // }
 
-
 //#endregion
-
 
 //#region Createing window pane by mouse Clicks and cutting of vertices ..
 // const raycaster = new THREE.Raycaster();
@@ -1167,7 +1150,7 @@ const axesHelper = new THREE.AxesHelper(500);
 //   if (intersects.length > 0) {
 //     let point = new THREE.Vector3(Math.round(intersects[0].point.x), Math.round(intersects[0].point.y), Math.round(intersects[0].point.z));
 //     clickedPoints.push(point);
-    
+
 //     if (clickedPoints.length >= 2) {
 //       const prevPoint = clickedPoints[clickedPoints.length - 2];
 //       if(point.distanceTo(clickedPoints[0]) >= 10){
@@ -1175,13 +1158,13 @@ const axesHelper = new THREE.AxesHelper(500);
 //       }
 //       else{
 //         clickedPoints[clickedPoints.length - 1] = clickedPoints[0];
-//         lines.push(new THREE.LineCurve3(prevPoint, clickedPoints[0]));        
+//         lines.push(new THREE.LineCurve3(prevPoint, clickedPoints[0]));
 //       }
 //       drawLine(prevPoint, point);
 //     }
 //     if (clickedPoints.length > 2 && point.distanceTo(clickedPoints[0]) < 10) {
 //       createPane(lines, shapeWidth, clickedPoints);
-      
+
 //       resetDrawing();
 //     }
 //   }
@@ -1245,7 +1228,6 @@ const axesHelper = new THREE.AxesHelper(500);
 //   scene.add(tempLine);
 // }
 
-
 // function isClockwise(lines) {
 //   let sum = 0;
 //   for (let i = 0; i < lines.length; i++) {
@@ -1257,20 +1239,19 @@ const axesHelper = new THREE.AxesHelper(500);
 // }
 // console.log("Clicked Points : ",clickedPoints);
 
-
 // function createPane(lines, shapeWidth, clickedPoints) {
-  
+
 //   const finalObj = new THREE.Object3D();
 //   const shape = new THREE.Shape();
 //   let extrudeShape;
-  
+
 //   for(let i = 0;i<clickedPoints.length - 1;i++){
 
 //     const start1 = clickedPoints[i];
 //     const end1 = clickedPoints[i+1];
 //     const start2 = clickedPoints[i+1];
 //     const end2 = clickedPoints[(i + 2) % (clickedPoints.length - 1)];
-    
+
 //     angleBetweenLines.push(getAngleBetweenLines(start1, end1, start2, end2));
 //     console.log("angle between lines",angleBetweenLines);
 
@@ -1292,22 +1273,21 @@ const axesHelper = new THREE.AxesHelper(500);
 //       parallelLine = getParallelLine(clickedPoints[i], clickedPoints[0], shapeWidth);
 //       parallelLine2 = getParallelLine(clickedPoints[0], clickedPoints[1], shapeWidth);
 //     }
-    
+
 //     const intersectionPoint = getInterSectionPoint(parallelLine2.x, parallelLine2.y, parallelLine.x, parallelLine.y);
 //     intersectionPointsArray.push(intersectionPoint);
 
-//     cutLineArray.push(new THREE.Vector2(cutLineStartPoint, cutLineEndPoint));    
+//     cutLineArray.push(new THREE.Vector2(cutLineStartPoint, cutLineEndPoint));
 //     const cutLine = new THREE.BufferGeometry().setFromPoints([cutLinePointLeftTop, cutLineMidPoint, cutLinePointLeftBottom, cutLineMidPoint, cutLinePointRightTop, cutLineMidPoint, cutLinePointRightBottom]);
 //     const lineMat = new THREE.LineBasicMaterial({color: "yellow"});
 //     const line = new THREE.Line(cutLine, lineMat);
 //     finalObj.add(line);
 
 //     }
-   
 
 //     // const intersectionPoint = getInterSectionPoint(cutLineArray[0].x, cutLineArray[0].y, parallelLine.x, parallelLine.y);
 //     console.log(intersectionPointsArray);
-  
+
 //   if (isClockwise(lines)) {
 //     shape.moveTo(0, 0);
 //     shape.lineTo(0, -shapeWidth);
@@ -1345,7 +1325,7 @@ const axesHelper = new THREE.AxesHelper(500);
 //       let x = pos.getX(i);
 //       let y = pos.getY(i);
 //       let z = pos.getZ(i);
-      
+
 //       x = Math.round(x);
 //       y = Math.round(y);
 //       z = Math.round(z);
@@ -1359,7 +1339,7 @@ const axesHelper = new THREE.AxesHelper(500);
 //       //   pos.setX(i, Math.round(intersectionPointsArray[0].x));
 //       //   pos.setY(i, Math.round(intersectionPointsArray[0].y));
 //       // }
-      
+
 //       // if(x === Math.round(clickedPoints[2].x) - shapeWidth ){
 //       //   pos.setY(i, Math.round(intersectionPointsArray[1].y));
 //       //   pos.setX(i, Math.round(intersectionPointsArray[1].x));
@@ -1369,7 +1349,6 @@ const axesHelper = new THREE.AxesHelper(500);
 //       //   pos.setX(i, Math.round(intersectionPointsArray[1].x));
 //       //   pos.setY(i, Math.round(intersectionPointsArray[1].y));
 //       // }
-
 
 //       // if(x === Math.round(clickedPoints[3].x) + shapeWidth ){
 //       //   pos.setY(i, Math.round(intersectionPointsArray[2].y));
@@ -1395,7 +1374,7 @@ const axesHelper = new THREE.AxesHelper(500);
 //   const edgesOfMesh = new THREE.LineSegments(edges, edgesMaterial);
 //   finalObj.add(edgesOfMesh);
 //   }
-  
+
 //   finalObj.position.z = shapeWidth;
 //   scene.add(finalObj);
 // }
@@ -1441,7 +1420,7 @@ const axesHelper = new THREE.AxesHelper(500);
 //   const interSectX = ((p1.x * p2.y - p1.y * p2.x) * (p3.x - p4.x) - (p1.x - p2.x) * (p3.x * p4.y - p3.y * p4.x))/ denominator;
 //   const interSectY = ((p1.x * p2.y - p1.y * p2.x) * (p3.y - p4.y) - (p1.y - p2.y) * (p3.x * p4.y - p3.y * p4.x))/ denominator;
 //   const intPointXY = new THREE.Vector2(interSectX, interSectY);
- 
+
 //   const minX = Math.min(p1.x, p2.x);
 //   const minY = Math.min(p1.y, p2.y);
 //   const maxX = Math.max(p1.x, p2.x);
@@ -1481,11 +1460,9 @@ const axesHelper = new THREE.AxesHelper(500);
 // console.log("Parallel Line Start:", parallelLines.x);
 // console.log("Parallel Line End:", parallelLines.y);
 
-
 //#endregion
 
-
-//#region csg shape cutter 
+//#region csg shape cutter
 // const shape = new THREE.Shape();
 // shape.moveTo(0, 0);
 // shape.lineTo(50, 0);
@@ -1583,10 +1560,8 @@ const axesHelper = new THREE.AxesHelper(500);
 // leftTopCut.rotation.y = Math.PI;
 // leftTopCut.updateMatrixWorld();
 
-
 // // CSG Evaluator
 // const evaluator = new Evaluator();
-
 
 // const bottomMeshLeftCut = evaluator.evaluate(bottomMesh, bottomLeftCut, SUBTRACTION);
 // const leftMeshBottomCut = evaluator.evaluate(leftMesh, LeftBottomCut, SUBTRACTION);
@@ -1601,16 +1576,12 @@ const axesHelper = new THREE.AxesHelper(500);
 // const bottomRightMesh = evaluator.evaluate(bottomMeshRightCut, rightMeshBottomCut, ADDITION);
 // const bottomMeshConnector = evaluator.evaluate(bottomLeftMesh, bottomRightMesh, ADDITION);
 
-
 // const topLeftMesh = evaluator.evaluate(topMeshLeftCut, leftMehsTopCut, ADDITION);
 // const topRightMesh = evaluator.evaluate(topMeshRightCut, righMeshTopCut, ADDITION);
 // const topMeshConnector = evaluator.evaluate(topLeftMesh, topRightMesh, ADDITION);
 
-
 // const edgesTop = new THREE.Line(new THREE.EdgesGeometry(topMeshConnector.geometry), new THREE.LineBasicMaterial({color: "white"}));
 // const edgesBottom = new THREE.Line(new THREE.EdgesGeometry(bottomMeshConnector.geometry), new THREE.LineBasicMaterial({color: "white"}));
-
-
 
 // scene.add(topMeshConnector, bottomMeshConnector, edgesTop, edgesBottom);
 
@@ -1628,169 +1599,609 @@ const axesHelper = new THREE.AxesHelper(500);
 
 //#endregion
 
-//#region 
-const shapeWidth = 50;
-const extrudeWidth = 200;
-const parentObj = new THREE.Object3D();
-const shape = new THREE.Shape();
-shape.moveTo(0,0);
-shape.lineTo(shapeWidth, 0);
-shape.lineTo(shapeWidth, shapeWidth);
-shape.lineTo(0, shapeWidth);
-shape.lineTo(0,0);
-const side = HelperFunction.Side;
-const bottomPath = new THREE.LineCurve3(
-    new THREE.Vector3(0,0,0),
-    new THREE.Vector3(extrudeWidth, 0,0),
-);
+//#region
+// const shapeWidth = 50;
+// const extrudeWidth = 300;
+// const parentObj = new THREE.Object3D();
+// const side = HelperFunction.Side;
+// const bottomLinesArray = [];
+// const upperLinesArray = [];
+// const angleBetLinesArray = [];
+// const cutLineArray = [];
 
-const rightPath = new THREE.LineCurve3(
-  new THREE.Vector3(extrudeWidth,0,0),
-  new THREE.Vector3(extrudeWidth, extrudeWidth,0),
-)
+// // Shape
+// const shape = new THREE.Shape();
+// shape.moveTo(0, 0);
+// shape.lineTo(shapeWidth, 0);
+// shape.lineTo(shapeWidth, shapeWidth);
+// shape.lineTo(0, shapeWidth);
+// shape.lineTo(0, 0);
 
-const topPath = new THREE.LineCurve3(
-  new THREE.Vector3(extrudeWidth,extrudeWidth,0),
-  new THREE.Vector3(0, extrudeWidth,0),
-)
+// // Extrusion Paths
+// const bottomPath = new THREE.LineCurve3(
+//   new THREE.Vector3(0, 0, 0),
+//   new THREE.Vector3(extrudeWidth, 0, 0)
+// );
 
-const leftPath = new THREE.LineCurve3(
-  new THREE.Vector3(0, extrudeWidth,0),
-  new THREE.Vector3(0,0,0),
-)
+// const rightPath = new THREE.LineCurve3(
+//   new THREE.Vector3(extrudeWidth, 0, 0),
+//   new THREE.Vector3(extrudeWidth, extrudeWidth, 0)
+// );
 
-const paths = [bottomPath, rightPath, topPath, leftPath];
+// const topPath = new THREE.LineCurve3(
+//   new THREE.Vector3(extrudeWidth, extrudeWidth, 0),
+//   new THREE.Vector3(0, extrudeWidth, 0)
+// );
+
+// const leftPath = new THREE.LineCurve3(
+//   new THREE.Vector3(0, extrudeWidth, 0),
+//   new THREE.Vector3(0, 0, 0)
+// );
+
+// // Collections of the paths
+// const paths = [bottomPath, rightPath, topPath, leftPath];
+
 // for (const path of paths) {
-  const extrudeSettings = {
-    steps: 1,
-    extrudePath: bottomPath,
-  }
+//   const extrudeSettings = {
+//     steps: 1,
+//     extrudePath: path,
+//   };
 
-  const extrudeSettings2 = {
-    steps: 1,
-    extrudePath: rightPath,
-  }
-  
-  
-  const extrudeShape = new THREE.ExtrudeGeometry(shape, extrudeSettings);
-  const material = new THREE.MeshStandardMaterial({color: "red"});
-  const mesh = new THREE.Mesh(extrudeShape, material);
-  const mesh2 = new THREE.Mesh(new THREE.ExtrudeGeometry(shape, extrudeSettings2), material);
+//   const mesh = new THREE.Mesh(
+//     new THREE.ExtrudeGeometry(shape, extrudeSettings),
+//     new THREE.MeshStandardMaterial({ color: "red" })
+//   );
+//   const edgeLines = new THREE.LineSegments(
+//     new THREE.EdgesGeometry(mesh.geometry),
+//     new THREE.LineBasicMaterial({ color: "white" })
+//   );
+//   mesh.add(edgeLines);
+
+//   const bottomLine = new THREE.Vector2(
+//     new THREE.Vector2(path.v1.x, path.v1.y),
+//     new THREE.Vector2(path.v2.x, path.v2.y)
+//   );
+
+//   bottomLinesArray.push(bottomLine);
+//   parentObj.add(mesh);
+// }
+
+// for (let i = 0; i < bottomLinesArray.length; i++) {
+//   const angleBetLines = HelperFunction.getAngleBetweenLines(
+//     bottomLinesArray[i].x,
+//     bottomLinesArray[i].y,
+//     bottomLinesArray[(i + 1) % bottomLinesArray.length].x,
+//     bottomLinesArray[(i + 1) % bottomLinesArray.length].y
+//   );
+//   angleBetLinesArray.push(angleBetLines);
+//   if (i === 0) {
+//       const upperLine = new THREE.Vector2(
+//       new THREE.Vector2(
+//         bottomLinesArray[i].x.x,
+//         bottomLinesArray[i].x.y + shapeWidth
+//       ),
+//       new THREE.Vector2(
+//         bottomLinesArray[i].y.x,
+//         bottomLinesArray[i].y.y + shapeWidth
+//       )
+//     );
+//     upperLinesArray.push(upperLine);
+//   } else if (i == 1) {
+//     const upperLine = new THREE.Vector2(
+//       new THREE.Vector2(
+//         bottomLinesArray[i].x.x - shapeWidth,
+//         bottomLinesArray[i].x.y
+//       ),
+//       new THREE.Vector2(
+//         bottomLinesArray[i].y.x - shapeWidth,
+//         bottomLinesArray[i].y.y
+//       )
+//     );
+//     upperLinesArray.push(upperLine);
+//   } else if (i == 2) {
+//     const upperLine = new THREE.Vector2(
+//       new THREE.Vector2(
+//         bottomLinesArray[i].x.x,
+//         bottomLinesArray[i].x.y - shapeWidth
+//       ),
+//       new THREE.Vector2(
+//         bottomLinesArray[i].y.x,
+//         bottomLinesArray[i].y.y - shapeWidth
+//       )
+//     );
+//     upperLinesArray.push(upperLine);
+//   } else if (i == 3) {
+//       const upperLine = new THREE.Vector2(
+//       new THREE.Vector2(
+//         bottomLinesArray[i].x.x + shapeWidth,
+//         bottomLinesArray[i].x.y
+//       ),
+//       new THREE.Vector2(
+//         bottomLinesArray[i].y.x + shapeWidth,
+//         bottomLinesArray[i].y.y
+//       )
+//     );
+//     upperLinesArray.push(upperLine);
+//   }
+// }
+
+// // cutLines
+// for (let i = 0; i < angleBetLinesArray.length; i++) {
+//   if (i === 0) {
+//     const cutLine = getCutLine(
+//       bottomLinesArray[i],
+//       angleBetLinesArray[i],
+//       side.right,
+//       side.bottom,
+//       side.top
+//     );
+//     cutLineArray.push(cutLine);
+//     // Cut line helper (visualization)
+//     const cutLinePoints = [cutLine.x, cutLine.y];
+//     const cutLineHelper = new THREE.LineSegments(
+//       new THREE.BufferGeometry().setFromPoints(cutLinePoints),
+//       new THREE.LineBasicMaterial({ color: "yellow" })
+//     );
+//     parentObj.add(cutLineHelper);
+//   }
+//    else if (i === 1) {
+//     const cutLine = getCutLine(
+//       bottomLinesArray[i],
+//       angleBetLinesArray[i],
+//       side.right,
+//       side.top,
+//       side.bottom
+//     );
+//     cutLineArray.push(cutLine);
+//     // Cut line helper (visualization)
+//     const cutLinePoints = [cutLine.x, cutLine.y];
+//     const cutLineHelper = new THREE.LineSegments(
+//       new THREE.BufferGeometry().setFromPoints(cutLinePoints),
+//       new THREE.LineBasicMaterial({ color: "yellow" })
+//     );
+//     parentObj.add(cutLineHelper);
+//   }
+//    else if (i == 2) {
+//     const cutLine = getCutLine(
+//       bottomLinesArray[i],
+//       angleBetLinesArray[i],
+//       side.left,
+//       side.top,
+//       side.bottom
+//     );
+//     cutLineArray.push(cutLine);
+//     // Cut line helper (visualization)
+//     const cutLinePoints = [cutLine.x, cutLine.y];
+//     const cutLineHelper = new THREE.LineSegments(
+//       new THREE.BufferGeometry().setFromPoints(cutLinePoints),
+//       new THREE.LineBasicMaterial({ color: "yellow" })
+//     );
+//     parentObj.add(cutLineHelper);
+//   } 
+//   else if (i == 3) {
+//     const cutLine = getCutLine(
+//       bottomLinesArray[i],
+//       angleBetLinesArray[i],
+//       side.left,
+//       side.bottom,
+//       side.top
+//     );
+//     cutLineArray.push(cutLine);
+//     // Cut line helper (visualization)
+//     const cutLinePoints = [cutLine.x, cutLine.y];
+//     const cutLineHelper = new THREE.LineSegments(
+//       new THREE.BufferGeometry().setFromPoints(cutLinePoints),
+//       new THREE.LineBasicMaterial({ color: "yellow" })
+//     );
+//     parentObj.add(cutLineHelper);
+//   }
+// }
+
+// for(let i = 0;i<cutLineArray.length;i++){
+// linePolygonCutter(cutLineArray[i],bottomLinesArray[i],upperLinesArray[i], bottomLinesArray[(i+1) % cutLineArray.length], upperLinesArray[(i+1) % cutLineArray.length], parentObj.children[i], side.right);
+// // console.log(cutLineArray[i],bottomLinesArray[i],upperLinesArray[i], bottomLinesArray[(i+1) % cutLineArray.length], upperLinesArray[(i+1) % cutLineArray.length], parentObj.children[i], side.right)
+// }
+// scene.add(parentObj);
+
+// function getCutLine(baseLine, AngleDeg, horSide, verSide, towards) {
+//   const baseLength = baseLine.x.distanceTo(baseLine.y);
+//   let cutLine;
+//   const perpendicularHeight = HelperFunction.getPerpendicularHeight(
+//     baseLength,
+//     AngleDeg / 2
+//   );
+
+//   // bottom Line
+//   if (
+//     horSide === HelperFunction.Side.right &&
+//     verSide === HelperFunction.Side.bottom &&
+//     towards == HelperFunction.Side.top
+//   ) {
+//     cutLine = new THREE.Vector2(
+//       baseLine.y,
+//       new THREE.Vector2(
+//         baseLine.x.x,
+//         Math.round(baseLine.x.y + perpendicularHeight)
+//       )
+//     );
+//   }
+
+//   //right line
+//   else if (
+//     horSide === HelperFunction.Side.right &&
+//     verSide === HelperFunction.Side.top &&
+//     towards == HelperFunction.Side.bottom
+//   ) {
+//     cutLine = new THREE.Vector2(
+//       baseLine.y,
+//       new THREE.Vector2(
+//         Math.round(baseLine.x.x - perpendicularHeight),
+//         baseLine.y.y
+//       )
+//     );
+//   }
+
+//   // top line
+//   else if (
+//     horSide === HelperFunction.Side.left &&
+//     verSide === HelperFunction.Side.top &&
+//     towards === HelperFunction.Side.bottom
+//   ) {
+//     cutLine = new THREE.Vector2(
+//       baseLine.y,
+//       new THREE.Vector2(
+//         baseLine.x.x,
+//         Math.round(baseLine.x.y - perpendicularHeight)
+//       )
+//     );
+//   }
+
+//   // left line
+//   else if (
+//     horSide === HelperFunction.Side.left &&
+//     verSide === HelperFunction.Side.bottom &&
+//     towards === HelperFunction.Side.top
+//   ) {
+//     cutLine = new THREE.Vector2(
+//       baseLine.y,
+//       new THREE.Vector2(
+//         Math.round(baseLine.x.x + perpendicularHeight),
+//         baseLine.x.y
+//       )
+//     );
+//   }
+
+//   return cutLine;
+// }
+
+// function linePolygonCutter(cutLine, bottomLine, upperLine, bottomLine2, upperLine2, parentObj, side){
+//   const upperIntersectionPoint = HelperFunction.getIntersectionPoint(upperLine.x, upperLine.y, cutLine.x, cutLine.y);
+//   const bottomIntersectionPoint = HelperFunction.getIntersectionPoint(bottomLine.x, bottomLine.y, cutLine.x, cutLine.y);
+//   const pos = parentObj.geometry.getAttribute("position");
+//   console.log(upperIntersectionPoint,bottomIntersectionPoint );
+
+//   for(let i = 0;i<pos.count; i++){
+//     // console.log(pos.getX(i), pos.getY(i));
+//     if(side === HelperFunction.Side.right && pos.getX(i) == upperLine.y.x && pos.getY(i) == upperLine.y.y ){
+//       pos.setX(i, upperIntersectionPoint.x);
+//       pos.setY(i, upperIntersectionPoint.y);
+//     }
+//     if(side === HelperFunction.Side.right && pos.getX(i) == bottomLine.y.x && pos.getY(i) == bottomLine.y.y ){
+//       pos.setX(i, bottomIntersectionPoint.x);
+//       pos.setY(i, bottomIntersectionPoint.y);
+//     }
+//     if(side === HelperFunction.Side.left && pos.getX(i) === upperLine2.x.x && pos.getY(i) === upperLine2.x.y){
+//       pos.setX(i, upperIntersectionPoint.x);
+//       pos.setY(i, upperIntersectionPoint.y);
+//     }
+//     if(side === HelperFunction.Side.left && pos.getX(i) == bottomLine2.x.x && pos.getY(i) == bottomLine2.x.y ){
+//       pos.setX(i, bottomIntersectionPoint.x);
+//       pos.setY(i, bottomIntersectionPoint.y);
+//     }
+//   }
+//   pos.needsUpdate = true;
 
 // }
 
-
-// cutLine
-const upperLine = new THREE.Vector2(
-  new THREE.Vector2(0, shapeWidth),
-  new THREE.Vector2(extrudeWidth, shapeWidth)
-);
-
-const bottomLine = new THREE.Vector2(
-  new THREE.Vector2(0,0),
-  new THREE.Vector2(extrudeWidth, 0)
-);
-
-const upperLine2 = new THREE.Vector2(
-  new THREE.Vector2(extrudeWidth - shapeWidth, 0),
-  new THREE.Vector2(extrudeWidth - shapeWidth, extrudeWidth)
-);
-const bottomLine2 = new THREE.Vector2(
-  new THREE.Vector2(extrudeWidth , 0),
-  new THREE.Vector2(extrudeWidth, extrudeWidth)
-);
-
-const angleBetLines = HelperFunction.getAngleBetweenLines(bottomLine.x, bottomLine.y, bottomLine2.x, bottomLine2.y);
-
-// const angleBetLeftLines = HelperFunction.getAngleBetweenLines(bottomLine.x, bottomLine.y, new THREE.Vector2(leftPath.v2.x, leftPath.v2.y), new THREE.Vector2(leftPath.v1.x, leftPath.v1.y));
-
-// side are considered as per the base line
-const cutLine = getCutLine(bottomLine, angleBetLines, side.right, side.top, side.left);
-// const cutLineBottomLeft = getCutLine(bottomLine,angleBetLeftLines, side.left, side.top, side.right);
-// const cutLinePoints = [cutLine.x, cutLine.y, cutLineBottomLeft.x, cutLineBottomLeft.y];
-const cutLinePoints = [cutLine.x, cutLine.y];
-
-const cutLineHelper = new THREE.Line(new THREE.BufferGeometry().setFromPoints(cutLinePoints), new THREE.LineBasicMaterial({color: "yellow"}));
-linePolygonCutter(cutLine, bottomLine, upperLine, bottomLine2, upperLine2, mesh, side.right);
-linePolygonCutter(cutLine, bottomLine, upperLine, bottomLine2, upperLine2, mesh2, side.left);
-// linePolygonCutter(cutLineBottomLeft, bottomLine, upperLine, bottomLine2, upperLine2, mesh, side.left);
-
-const meshEdgeLines = new THREE.LineSegments(new THREE.EdgesGeometry(extrudeShape), new THREE.LineBasicMaterial({color: "white"}));
-const meshEdgeLines2 = new THREE.LineSegments(new THREE.EdgesGeometry(mesh2.geometry),new THREE.LineBasicMaterial({color: "white"}) );
-mesh.add(meshEdgeLines, meshEdgeLines2);
-  parentObj.add(mesh, mesh2);
-parentObj.add(cutLineHelper);
-
-scene.add(parentObj);
-
-
-function getCutLine(baseLine, AngleDeg, horSide, verSide, towards){
-  const baseLength = (baseLine.x).distanceTo(baseLine.y);
- let cutLine;
-  const perpendicularHeight = HelperFunction.getPerpendicularHeight(baseLength, AngleDeg/2);
-
-  // for bottom
-  if(horSide === HelperFunction.Side.right && verSide === HelperFunction.Side.top && towards == HelperFunction.Side.left){
-    cutLine = new THREE.Vector2(baseLine.y, new THREE.Vector2(
-      baseLine.x.x, Math.round((baseLine.x.y) + perpendicularHeight)
-    ));
-  }
-  // else if(horSide === HelperFunction.Side.left && verSide === HelperFunction.Side.top && towards == HelperFunction.Side.right){
-  //   cutLine = new THREE.Vector2(baseLine.x, new THREE.Vector2(
-  //     baseLine.x.x + perpendicularHeight, Math.round((baseLine.x.y) + perpendicularHeight)
-  //   ));
-  // }
-  else if(horSide === HelperFunction.Side.right && verSide === HelperFunction.Side.bottom && towards == HelperFunction.Side.left){
-    cutLine = new THREE.Vector2(baseLine.y, new THREE.Vector2(
-      baseLine.x.x, Math.round((baseLine.x.y) - perpendicularHeight)
-    ));
-  }
-  else if(horSide === HelperFunction.Side.right && verSide === HelperFunction.Side.top && towards == HelperFunction.Side.right){
-    cutLine = new THREE.Vector2(baseLine.x, new THREE.Vector2(
-      baseLine.y.x, Math.round((baseLine.y.y) + perpendicularHeight)
-    ));
-  }
-  else if(horSide === HelperFunction.Side.right && verSide === HelperFunction.Side.bottom && towards == HelperFunction.Side.right){
-    cutLine = new THREE.Vector2(baseLine.x, new THREE.Vector2(
-      baseLine.y.x, Math.round((baseLine.y.y) - perpendicularHeight)
-    ));
-  }
-
-  return cutLine;
-}
-
-
-function linePolygonCutter(cutLine, bottomLine, upperLine, bottomLine2, upperLine2, parentObj, side){
-  const upperIntersectionPoint = HelperFunction.getIntersectionPoint(upperLine.x, upperLine.y, cutLine.x, cutLine.y);
-  const bottomIntersectionPoint = HelperFunction.getIntersectionPoint(bottomLine.x, bottomLine.y, cutLine.x, cutLine.y);
-  const pos = parentObj.geometry.getAttribute("position");
-  console.log(upperIntersectionPoint,bottomIntersectionPoint );
-
-  for(let i = 0;i<pos.count; i++){
-    console.log(pos.getX(i), pos.getY(i));
-    if(side === HelperFunction.Side.right && pos.getX(i) == upperLine.y.x && pos.getY(i) == upperLine.y.y ){
-      pos.setX(i, upperIntersectionPoint.x);
-      pos.setY(i, upperIntersectionPoint.y);
-    }
-    if(side === HelperFunction.Side.right && pos.getX(i) == bottomLine.y.x && pos.getY(i) == bottomLine.y.y ){
-      pos.setX(i, bottomIntersectionPoint.x);
-      pos.setY(i, bottomIntersectionPoint.y);
-    }
-    if(side === HelperFunction.Side.left && pos.getX(i) === upperLine2.x.x && pos.getY(i) === upperLine2.x.y){
-      pos.setX(i, upperIntersectionPoint.x);
-      pos.setY(i, upperIntersectionPoint.y);
-    }
-    if(side === HelperFunction.Side.left && pos.getX(i) == bottomLine2.x.x && pos.getY(i) == bottomLine2.x.y ){
-      pos.setX(i, bottomIntersectionPoint.x);
-      pos.setY(i, bottomIntersectionPoint.y);
-    }
-  }
-  pos.needsUpdate = true;
-
-}
-
 //#endregion
 
+//#region z axis cut line fro the extrude shape
+// const shapeWidth = 50;
+// const extrudeWidth = 300;
+// const parentObj = new THREE.Object3D();
+// const side = HelperFunction.Side;
+// const bottomLinesArray = [];
+// const upperLinesArray = [];
+// const angleBetLinesArray = [];
+// const cutLineArray = [];
+
+// // Shape
+// const shape = new THREE.Shape();
+// shape.moveTo(0, 0);
+// shape.lineTo(shapeWidth, 0);
+// shape.lineTo(shapeWidth, shapeWidth);
+// shape.lineTo(0, shapeWidth);
+// shape.lineTo(0, 0);
+
+// // Extrusion Paths
+// // const bottomPath = new THREE.LineCurve3(
+// //   new THREE.Vector3(0, 0, 0),
+// //   new THREE.Vector3(extrudeWidth, 0, 0)
+// // );
+
+// const path = new THREE.LineCurve3(
+//   new THREE.Vector3(0, 0, 0),
+//   new THREE.Vector3(0, extrudeWidth, 0)
+// );
+
+// // const topPath = new THREE.LineCurve3(
+// //   new THREE.Vector3(extrudeWidth, extrudeWidth, 0),
+// //   new THREE.Vector3(0, extrudeWidth, 0)
+// // );
+
+// // const leftPath = new THREE.LineCurve3(
+// //   new THREE.Vector3(0, extrudeWidth, 0),
+// //   new THREE.Vector3(0, 0, 0)
+// // );
+
+//   const extrudeSettings = {
+//     steps: 1,
+//     extrudePath: path,
+//   };
+
+//   const mesh = new THREE.Mesh(
+//     new THREE.ExtrudeGeometry(shape, extrudeSettings),
+//     new THREE.MeshStandardMaterial({ color: "red" })
+//   );
+  
+//   // z,y coordinates
+//   const cutLineBottom = new THREE.Vector2(
+//     new THREE.Vector2(0,0), // (z,y)
+//     new THREE.Vector2(-shapeWidth, shapeWidth) // (z,y)
+//   )
+
+//   const cutLineTop = new THREE.Vector2(
+//     new THREE.Vector2(0,extrudeWidth ),
+//     new THREE.Vector2(-shapeWidth, extrudeWidth - shapeWidth)
+//   )
+
+//   const baseLine = new THREE.Vector2(
+//     new THREE.Vector2(path.v1.x, path.v1.y),
+//     new THREE.Vector2(path.v2.x, path.v2.y)
+//   )
+
+//   const parallelLine = getParallelLine(baseLine.x, baseLine.y, shapeWidth);
+
+
+//   linePolygonCutter(cutLineBottom, baseLine, parallelLine, mesh, side.bottom);
+//   linePolygonCutter(cutLineTop, baseLine, parallelLine, mesh, side.top);
+
+//   const edgeLines = new THREE.LineSegments(
+//     new THREE.EdgesGeometry(mesh.geometry),
+//     new THREE.LineBasicMaterial({ color: "white" })
+//   );
+//   mesh.add(edgeLines);
+
+//   scene.add(mesh);
+
+
+
+//   function getParallelLine(start, end, offset) {
+//       let direction = new THREE.Vector2(end.x - start.x, end.y - start.y);
+//       direction.normalize();
+    
+//       let perpendicular = new THREE.Vector2(-direction.y, direction.x);
+    
+//       let newStart = new THREE.Vector2(start.x + perpendicular.x * offset, start.y + perpendicular.y * offset);
+//       let newEnd = new THREE.Vector2(end.x + perpendicular.x * offset, end.y + perpendicular.y * offset);
+    
+//       return new THREE.Vector2(newStart, newEnd);
+//     }
+  
+//   function linePolygonCutter(cutLine, bottomLine, upperLine, parentObj, side){
+//     const upperIntersectionPoint = HelperFunction.getIntersectionPoint(upperLine.x, upperLine.y, cutLine.x, cutLine.y);
+//     const bottomIntersectionPoint = HelperFunction.getIntersectionPoint(bottomLine.x, bottomLine.y, cutLine.x, cutLine.y);
+
+//     const pos = parentObj.geometry.getAttribute("position");
+      
+//     for(let i = 0;i<pos.count; i++){
+//       console.log(pos.getX(i), pos.getY(i), pos.getZ(i));
+
+//       // X - Y coordinate
+//       if(side === HelperFunction.Side.bottom && pos.getY(i) <= upperIntersectionPoint.y && pos.getZ(i) === upperIntersectionPoint.x){
+//         pos.setY(i, upperIntersectionPoint.y);
+//       }
+//       if(side === HelperFunction.Side.bottom && pos.getY(i) <= bottomIntersectionPoint.y && pos.getZ(i) === bottomIntersectionPoint.x){
+//         pos.setY(i, bottomIntersectionPoint.y);
+//       }
+//       if(side === HelperFunction.Side.top && pos.getY(i) >= upperIntersectionPoint.y && pos.getZ(i) === upperIntersectionPoint.x){
+//         pos.setY(i, upperIntersectionPoint.y);
+//       }
+//       if(side === HelperFunction.Side.top && pos.getY(i) >= bottomIntersectionPoint.y && pos.getZ(i) === bottomIntersectionPoint.x){
+//         pos.setY(i, bottomIntersectionPoint.y);
+//       }
+      
+
+//     }
+//     pos.needsUpdate = true;
+  
+//   }
+//#endregion
+
+//#region x axis cut line from the extrude shape
+const shapeWidth = 50;
+const extrudeWidth = 300;
+const parentObj = new THREE.Object3D();
+const side = HelperFunction.Side;
+const bottomLinesArray = [];
+const upperLinesArray = [];
+const angleBetLinesArray = [];
+const cutLineArray = [];
+
+// Shape
+const shape = new THREE.Shape();
+shape.moveTo(0, 0);
+
+shape.lineTo(shapeWidth, 0);
+shape.lineTo(shapeWidth, Math.round(shapeWidth/6));
+shape.lineTo(shapeWidth, Math.round(shapeWidth/4));
+shape.lineTo(shapeWidth, Math.round(shapeWidth/2));
+shape.lineTo(shapeWidth, Math.round(shapeWidth - shapeWidth/4));
+shape.lineTo(shapeWidth, Math.round(shapeWidth - shapeWidth/6));
+shape.lineTo(shapeWidth, Math.round(shapeWidth - shapeWidth/8));
+
+shape.lineTo(shapeWidth, shapeWidth);
+
+shape.lineTo(0, shapeWidth);
+shape.lineTo(0,Math.round(shapeWidth - shapeWidth/8));
+shape.lineTo(0,Math.round(shapeWidth - shapeWidth/6));
+shape.lineTo(0,Math.round(shapeWidth - shapeWidth/4));
+
+shape.lineTo(0,Math.round(shapeWidth/2));
+shape.lineTo(0,Math.round(shapeWidth/4));
+shape.lineTo(0,Math.round(shapeWidth/6));
+
+shape.lineTo(0, 0);
+
+// Extrusion Paths
+const horizontalPath = new THREE.LineCurve3(
+  new THREE.Vector3(0, 0, 0),
+  new THREE.Vector3(extrudeWidth, 0, 0)
+);
+
+// const verticalPath = new THREE.LineCurve3(
+//   new THREE.Vector3(0, 0, 0),
+//   new THREE.Vector3(0, extrudeWidth, 0)
+// );
+
+  const extrudeSettings = {
+    steps: 1,
+    extrudePath: horizontalPath,
+  };
+
+  const mesh = new THREE.Mesh(
+    new THREE.ExtrudeGeometry(shape, extrudeSettings),
+    new THREE.MeshStandardMaterial({ color: "red" })
+  );
+  
+  const baseLine = new THREE.Vector2(
+    new THREE.Vector2(extrudeSettings.extrudePath.v1.x, extrudeSettings.extrudePath.v1.y),
+    new THREE.Vector2(extrudeSettings.extrudePath.v2.x, extrudeSettings.extrudePath.v2.y)
+  )
+
+  const parallelLine = getParallelLine(baseLine.x, baseLine.y, shapeWidth);
+
+  // z,y coordinates
+  // const cutLineBottom = new THREE.Vector2(
+  //   new THREE.Vector2(0,0), // (z,y)
+  //   new THREE.Vector2(-shapeWidth, shapeWidth) // (z,y)
+  // )
+
+  // const cutLineTop = new THREE.Vector2(
+  //   new THREE.Vector2(0,extrudeWidth ),
+  //   new THREE.Vector2(-shapeWidth, extrudeWidth - shapeWidth)
+  // )
+
+
+  // x,y coordinates
+  const cutLineLeft = new THREE.Vector2(
+    new THREE.Vector2(0,shapeWidth/2),
+    new THREE.Vector2(shapeWidth,shapeWidth)
+  )
+
+  const cutLineRight = new THREE.Vector2(
+    new THREE.Vector2(extrudeWidth,shapeWidth/2),
+    new THREE.Vector2(extrudeWidth - shapeWidth, shapeWidth) 
+  )
+
+// Polygon cutter for the X-Y coordinate
+  linePolygonCutter(cutLineLeft, baseLine, parallelLine, mesh, side.left);
+  linePolygonCutter(cutLineRight, baseLine, parallelLine, mesh, side.right);
+  console.log(cutLineLeft, baseLine, parallelLine,);
+
+// Polygon cutter for the Z-Y coordinate
+  // linePolygonCutter(cutLineBottom, baseLine, parallelLine, mesh, side.bottom);
+  // linePolygonCutter(cutLineTop, baseLine, parallelLine, mesh, side.top);
+
+  const edgeLines = new THREE.LineSegments(
+    new THREE.EdgesGeometry(mesh.geometry),
+    new THREE.LineBasicMaterial({ color: "white" })
+  );
+  mesh.add(edgeLines);
+
+  scene.add(mesh);
+
+
+  function getParallelLine(start, end, offset) {
+      let newStart = new THREE.Vector2(start.x, start.y + offset);
+      let newEnd = new THREE.Vector2(end.x, end.y + offset);
+    
+      return new THREE.Vector2(newStart, newEnd);
+    }
+  
+  function linePolygonCutter(cutLine, baseLine, parallelLine, parentObj, side){
+    const parallelLineIntersectionPoint = HelperFunction.getIntersectionPoint(parallelLine.x, parallelLine.y, cutLine.x, cutLine.y);
+    const baseLineIntersectionPoint = HelperFunction.getIntersectionPoint(baseLine.x, baseLine.y, cutLine.x, cutLine.y);
+ 
+    const pos = parentObj.geometry.getAttribute("position");
+      
+    for(let i = 0;i<pos.count; i++){
+
+      // Z - Y coordinate
+      if(side === HelperFunction.Side.bottom && pos.getY(i) <= parallelLineIntersectionPoint.y && pos.getZ(i) === parallelLineIntersectionPoint.x){
+        pos.setY(i, parallelLineIntersectionPoint.y);
+      }
+      if(side === HelperFunction.Side.bottom && pos.getY(i) <= baseLineIntersectionPoint.y && pos.getZ(i) === baseLineIntersectionPoint.x){
+        pos.setY(i, baseLineIntersectionPoint.y);
+      }
+      if(side === HelperFunction.Side.top && pos.getY(i) >= parallelLineIntersectionPoint.y && pos.getZ(i) === parallelLineIntersectionPoint.x){
+        pos.setY(i, parallelLineIntersectionPoint.y);
+      }
+      if(side === HelperFunction.Side.top && pos.getY(i) >= baseLineIntersectionPoint.y && pos.getZ(i) === baseLineIntersectionPoint.x){
+        pos.setY(i, baseLineIntersectionPoint.y);
+      }
+      
+      // X - Y coordinate
+      // if(side === HelperFunction.Side.left && pos.getX(i) <= parallelLineIntersectionPoint.x && pos.getY(i) === parallelLineIntersectionPoint.y){
+      //   pos.setX(i, parallelLineIntersectionPoint.x);
+      // }
+      // if(side === HelperFunction.Side.left && pos.getX(i) <= baseLineIntersectionPoint.x && pos.getY(i) === baseLineIntersectionPoint.y){
+      //   pos.setX(i, baseLineIntersectionPoint.x);
+      // }
+      // if(side === HelperFunction.Side.right && pos.getX(i) >= parallelLineIntersectionPoint.x && pos.getY(i) === parallelLineIntersectionPoint.y){
+      //   pos.setX(i, parallelLineIntersectionPoint.x);
+      // }
+      // if(side === HelperFunction.Side.right && pos.getX(i) >= baseLineIntersectionPoint.x && pos.getY(i) === baseLineIntersectionPoint.y){
+      //   pos.setX(i, baseLineIntersectionPoint.x);
+      // }
+
+      // X-Y coordinates handling the multi point situation
+      if(side == HelperFunction.Side.left && pos.getX(i) <= parallelLineIntersectionPoint.x && pos.getY(i) >= cutLine.x.y && pos.getY(i) <= cutLine.y.y){
+      
+        const theta = Math.round(HelperFunction.getAngleBetweenLines(parallelLine.x, baseLine.x, cutLine.x, cutLine.y));
+        const base = Math.round(pos.getY(i) - cutLine.x.y);
+        const offset = Math.round(HelperFunction.getPerpendicularHeight(base, theta));
+
+        pos.setX(i, pos.getX(i) + offset);
+      }
+
+      if(side == HelperFunction.Side.right && pos.getX(i) >= parallelLineIntersectionPoint.x && pos.getY(i) >= cutLine.x.y && pos.getY(i) <= cutLine.y.y){
+        console.log(pos.getX(i), pos.getY(i), pos.getZ(i));
+  
+          const theta = Math.round(HelperFunction.getAngleBetweenLines(parallelLine.y, baseLine.y, cutLine.x, cutLine.y));
+          const base = Math.round(pos.getY(i) - cutLine.x.y);
+          const offset = Math.round(HelperFunction.getPerpendicularHeight(base, theta));
+  
+          console.log("base",base,"offset",offset, "theta",theta);
+          pos.setX(i, pos.getX(i) - offset);
+        }
+      
+    }
+    pos.needsUpdate = true;
+  
+  }
+
+//#endregion
 
 //#region  Renderer setup
 const canvas = document.querySelector("canvas");
